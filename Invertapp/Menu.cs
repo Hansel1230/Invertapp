@@ -20,10 +20,22 @@ namespace Invertapp
                     menuProducto();
                     break;
                 case 3:
-
+                    Console.Clear();
+                    Console.WriteLine("\nEntrada inventario\n\n");
+                    operacion.Entradainventario();
+                    Console.WriteLine("Inventario actualizado Correctamente. Pulse Enter");
+                    Console.ReadKey();
+                    Console.Clear();
+                    menuPrincipal();
                     break;
                 case 4:
-
+                    Console.Clear();
+                    Console.WriteLine("\nSalida inventario\n\n");
+                    operacion.Salidainventario();
+                    Console.WriteLine("Inventario actualizado Correctamente. Pulse Enter");
+                    Console.ReadKey();
+                    Console.Clear();
+                    menuPrincipal();
                     break;
                 case 5:
                     Console.WriteLine("Gracias por usar nustro inventario. Pulse Enter");
@@ -39,6 +51,7 @@ namespace Invertapp
                     break;
             }
         }
+        //Categorias
         private static void menuCategoria()
         {
             Console.Clear();
@@ -49,6 +62,7 @@ namespace Invertapp
             switch (opcion)
             {
                 case 1:
+                    //Agregar Categorias
                     Console.WriteLine("\nAgregar Categorias\n\n");
                     Console.WriteLine("Ingrese el nombre de la categoria");
                     string nombre = Console.ReadLine();
@@ -56,11 +70,14 @@ namespace Invertapp
 
                     Console.WriteLine("\nCategoria Agregada correctamente. Pulse Enter");
                     Console.ReadKey();
+                    menuCategoria();
                     break;
 
                 case 2:
+                    //Editar Categorias
                     Console.WriteLine("\nEditar Categorias\n\n");
                     operacion.ListarCategoria();
+
                     Console.WriteLine("\nIngrese el indice de la categoria a editar:");
                     int editindex= Convert.ToInt16(Console.ReadLine());
 
@@ -70,9 +87,11 @@ namespace Invertapp
 
                     Console.WriteLine("\nCategoria editada correctamente. Pulse Enter");
                     Console.ReadKey();
+                    menuCategoria();
                     break;
 
                 case 3:
+                    //Eliminar Categorias
                     Console.WriteLine("\n Eliminar Categorias\n\n");
 
                     operacion.ListarCategoria();
@@ -85,14 +104,22 @@ namespace Invertapp
 
                     Console.ReadKey();
                     Console.Clear();
+                    menuCategoria();
                     break;
 
                 case 4:
+                    //ListarCategoria
                     Console.WriteLine("\nCategorias\n\n");
                     operacion.ListarCategoria();
+                    Console.WriteLine("\n\nPulse Enter\n");
+                    Console.ReadKey();
+                    menuCategoria();
                     break;
 
                 case 5:
+                    Console.WriteLine("\nPulse Enter");
+                    Console.ReadKey();
+                    Console.Clear();
                     menuPrincipal();
                     break;
 
@@ -106,58 +133,94 @@ namespace Invertapp
             Console.Clear();
             menuPrincipal();
         }
+        // productos
         private static void menuProducto()
         {
-            Console.WriteLine("Menu Productos\n");
+            string produtNombre;
+            double produtprecio;
+            int produtindex;
+            Console.WriteLine("\nMenu Productos\n");
             Console.WriteLine("\n1-Agregar producto\n2-Editar producto(\n3-Eliminar producto\n4-Listar productos\n5-Volver atrás\n\nIngrese opcion deseada:");
             int opcion = Convert.ToInt16(Console.ReadLine());
             Console.Clear();
             switch (opcion)
             {
                 case 1:
+                    //Agregar productos
                     Console.WriteLine("\nAgregar productos\n\n");
 
                     operacion.ListarCategoria();
 
                     Console.WriteLine("\nIngrese el indice de la categoria a seleccionar:");
-                    int indexCategoria = Convert.ToInt16(Console.ReadLine());
+                    int indexCatego = Convert.ToInt16(Console.ReadLine());
 
                     Console.WriteLine("\nIngrese el nombre del producto");
-                    string nombre = Console.ReadLine();
+                    produtNombre = Console.ReadLine();
 
                     Console.WriteLine("\nIngrese el precio del producto");
-                    double precio = Convert.ToInt32(Console.ReadLine());
+                    produtprecio = Convert.ToInt32(Console.ReadLine());
 
-                    operacion.AgregarProducto(nombre, precio,indexCategoria);
+                    operacion.AgregarProducto(produtNombre, produtprecio, indexCatego);
+                    Console.WriteLine("\nProducto agregado correctamente. Pulse Enter");
+                    Console.ReadKey();
                     Console.Clear();
+                    menuProducto();
                     break;
 
                 case 2:
+                    //Editar productos
                     Console.WriteLine("\nEditar productos\n\n");
                     operacion.ListarProducto();
 
                     Console.WriteLine("\nIngrese el indice del producto a editar:");
-                    int editindex = Convert.ToInt16(Console.ReadLine());
+                    produtindex = Convert.ToInt16(Console.ReadLine());
                   
                     Console.WriteLine("\nIngrese el Nombre del nuevo Producto:");
-                    string editNombre = Console.ReadLine();
+                    produtNombre = Console.ReadLine();
 
                     Console.WriteLine("\nIngrese el Precio del nuevo Producto:");
-                    double produtprecio = Convert.ToInt32(Console.ReadLine());
+                    produtprecio = Convert.ToInt32(Console.ReadLine());
 
-                    operacion.EditarProducto(editNombre, produtprecio,editindex);
+                    Console.WriteLine("\n");
+                    operacion.ListarCategoria();
+
+                    Console.WriteLine("\nIngrese el indice de la nueva categoria:");
+                    int categoindex = Convert.ToInt16(Console.ReadLine());
+
+                    operacion.EditarProducto(produtNombre, produtprecio, produtindex, categoindex);
+                    Console.WriteLine("\nProducto editado correctamente. Pulse Enter");
+                    Console.ReadKey();
                     Console.Clear();
+                    menuProducto();
                     break;
 
                 case 3:
+                    //Eliminar productos
                     Console.WriteLine("\nEliminar productos\n\n");
+                    operacion.ListarProducto();
+
+                    Console.WriteLine("\nIngrese el indice de la categoria a eliminar:");
+                    produtindex = Convert.ToInt16(Console.ReadLine());
+
+                    operacion.ElimiarProductos(produtindex);
+                    Console.WriteLine("\nProducto eliminado correctamente. Pulse Enter");
+                    Console.ReadKey();
+                    Console.Clear();
+                    menuProducto();
                     break;
 
                 case 4:
-                    Console.WriteLine("\nListar productos\n\n");
+                    Console.WriteLine("\nProductos\n\n");
+                    operacion.ListarProducto();
+                    Console.WriteLine("\n\nPulse Enter\n");
+                    Console.ReadKey();
+                    menuProducto();
                     break;
 
                 case 5:
+                    Console.WriteLine("\nPulse Enter");
+                    Console.ReadKey();
+                    Console.Clear();
                     menuPrincipal();
                     break;
 

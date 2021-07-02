@@ -5,14 +5,12 @@ namespace Invertapp
 {
     public class Operaciones
     {
+        //listas
         List<Categorias> LisCategorias = new List<Categorias>();
         List<Productos> LisProductos = new List<Productos>();
-
-        public Operaciones()
-        {
-
-        }
-
+        List<int> LisCantidades = new List<int>();
+        
+        //Categorias
         public void AgregarCategoria(string nombreCategoria)
         {
             Categorias catego = new Categorias(nombreCategoria);
@@ -23,7 +21,6 @@ namespace Invertapp
         {
             LisCategorias[editindex - 1].Nombre = editnombre;
         }
-
         public void ListarCategoria()
         {
             int count = 0;
@@ -32,13 +29,14 @@ namespace Invertapp
                 count++;
                 Console.WriteLine(count + ":" + catego.Nombre);
             }
-            //Console.ReadKey();
-        }
+         }
 
         public void ElimiarCategoria(int editindex )
         {
             LisCategorias.RemoveAt(editindex - 1);
         }
+
+        // productos
 
         public void AgregarProducto(string nombreProducto,double precio, int indexCategoria)
         {
@@ -47,13 +45,13 @@ namespace Invertapp
             LisProductos.Add(product);
         }
 
-        public void EditarProducto(string nombreProducto, double precio, int indexCategoria)
+        public void EditarProducto(string nombreProducto, double precio, int produtindex , int indexCategoria)
         {
-            ListarProducto();
             Categorias catego = LisCategorias[indexCategoria - 1];
-            Productos product = new Productos(nombreProducto, precio, catego.Nombre);
-
-            LisProductos[indexCategoria - 1].Nombre = nombreProducto;
+ 
+            LisProductos[produtindex - 1].Nombre = nombreProducto;
+            LisProductos[produtindex - 1].Precio = precio;
+            LisProductos[produtindex - 1].NombreCategoria = catego.Nombre;
         }
 
         public void ListarProducto()
@@ -62,9 +60,35 @@ namespace Invertapp
             foreach (Productos producto in LisProductos)
             {
                 count++;
-                Console.WriteLine(count + ":" + producto);
+                Console.WriteLine(count + ":" + producto.Nombre);
             }
-            Console.ReadKey();
+        }
+
+        public void ElimiarProductos(int produtindex)
+        {
+            LisProductos.RemoveAt(produtindex - 1);
+        }
+
+        // Inventario
+        
+        public void Entradainventario()
+        {
+            Impresorinventario();
+        }
+
+        public void Salidainventario()
+        {
+            Impresorinventario();
+        }
+
+        public void Impresorinventario()
+        {
+            int count = 0;
+            foreach (Productos producto in LisProductos)
+            {
+                count++;
+                Console.WriteLine(count + ":" + producto.Nombre + ":" + producto.Cantidad);
+            }
         }
     }
 }
