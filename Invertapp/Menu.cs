@@ -72,7 +72,7 @@ namespace Invertapp
                         break;
 
                     case 5:
-                        Console.WriteLine("Gracias por usar nustro inventario. Pulse Enter");
+                        Console.WriteLine("Gracias por usar nuestro inventario. Pulse Enter");
                         Console.ReadKey();
                         Environment.Exit(0);
                         break;
@@ -193,7 +193,6 @@ namespace Invertapp
             int produtindex;
             Console.WriteLine("\nMenu Productos\n");
             Console.WriteLine("\n1-Agregar producto\n2-Editar producto(\n3-Eliminar producto\n4-Listar productos\n5-Volver atrás\n\nIngrese opcion deseada:");
-            Console.Clear();
             try
             {
                 int opcion = Convert.ToInt16(Console.ReadLine());
@@ -297,3 +296,4 @@ namespace Invertapp
         }
     }
 }
+/*Hansel De Los Santos Ramirez (202010355)*/
