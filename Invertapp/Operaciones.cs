@@ -8,8 +8,7 @@ namespace Invertapp
         //listas
         List<Categorias> LisCategorias = new List<Categorias>();
         List<Productos> LisProductos = new List<Productos>();
-        List<int> LisCantidades = new List<int>();
-        
+         
         //Categorias
         public void AgregarCategoria(string nombreCategoria)
         {
@@ -71,24 +70,38 @@ namespace Invertapp
 
         // Inventario
         
-        public void Entradainventario()
+        public void Entradainventario(int indice, int cantidad)
         {
-            Impresorinventario();
+            Productos product = LisProductos[indice - 1];
+            product.Cantidad += cantidad;
         }
 
-        public void Salidainventario()
+        public void Salidainventario(int indice, int cantidad)
         {
-            Impresorinventario();
+            Productos product =LisProductos[indice - 1];
+            product.Cantidad -= cantidad;
+            
         }
 
         public void Impresorinventario()
         {
             int count = 0;
+            Console.WriteLine("Ejemplo Estructura: (Indice:Producto:Cantidad) \n");
             foreach (Productos producto in LisProductos)
             {
                 count++;
                 Console.WriteLine(count + ":" + producto.Nombre + ":" + producto.Cantidad);
             }
+        }
+
+        public bool isvalidindexProduct(int opcion   )
+        {
+            return (opcion > 0 && opcion <= LisProductos.Count);
+        }
+
+        public bool isvalidindexCatego(int opcion)
+        {
+            return (opcion > 0 && opcion <= LisCategorias.Count);
         }
     }
 }
