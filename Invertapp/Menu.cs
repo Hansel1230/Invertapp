@@ -60,6 +60,7 @@ namespace Invertapp
                         Console.WriteLine("\nIngrese el indice del producto a actualizar:");
                         inventarioindex = Convert.ToInt16(Console.ReadLine());
 
+                        Console.WriteLine("\n Nota: la cantidad a sacar debe ser menor o igual a la cantidad existente en inventario.\n ");
                         Console.WriteLine("\nCantidad a sacar:");
                         cantidad = Convert.ToInt32(Console.ReadLine());
 
